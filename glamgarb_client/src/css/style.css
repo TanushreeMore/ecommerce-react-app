@@ -1,0 +1,207 @@
+/* comman */
+body{
+    margin: 0;
+    padding: 0;
+}
+*{
+    font-size: medium;
+    font-family: Georgia, 'Times New Roman', Times, Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* ============================================ */
+/* header page */
+.nav-menu a{
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+.navbar-custom{
+    min-height: 140px;
+}
+
+.hImg{
+    min-width: 50px;
+    max-width: 100px;
+    margin: 10px;
+}
+.login-cart{
+    margin-left: 50px;
+}
+@media (min-width: 480px) {
+    .hImg{
+        margin-left: 50px;
+    }
+    .login-cart {
+        margin-right: 50px;
+    }
+}
+.navbar-nav{
+    justify-content: center;
+ }
+.nav-item:hover{
+    background-color: black;
+    color: black;
+}
+
+.nav-item:hover .dropdown-menu{
+    background-color: black;
+    display: block;
+}
+.cart,
+.social-icons{
+    color: rgb(46, 46, 46);
+}
+.f-links{
+    color: white;
+    text-decoration: none;
+}
+.f-links:hover {
+    color: #FFBF00;
+}
+
+/* ============================================ */
+/* footer page */
+.container-footer{
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+hr{
+    width: 60px; 
+    background-color: #FFBF00; 
+    height: 2px;
+}
+.f-copyRight{
+    background-color: rgba(0, 0, 0, 0.2)
+}
+
+/* ============================================ */
+/* index page */
+.all-product-container, 
+.login-container{
+    margin: 15px 0;
+}
+/* ============================================ */
+/* login page */
+.login-container{
+    width: 500px;
+}
+.login-footer
+{
+    text-align: center;
+  margin:30px 0;
+  opacity:.5;
+  -webkit-transition:opacity .3s ease-in-out;
+  -o-transition:opacity .3s ease-in-out;
+  transition:opacity .3s ease-in-out
+}
+.login-footer:hover
+{
+  opacity:1
+}
+
+/* ============================================ */
+/* allProducts page */
+.container-img{
+    width: 100%;
+    height: 80vh;
+}
+.banner{
+    width: 100%;
+    height: 65vh;
+    background-size: cover;
+    background-position: 69%;
+    border-radius: 10px;
+    position: absolute;
+    margin-top: 40px;
+    box-shadow: 0px 8px 16px 4px rgba(0,0,0,0.2);
+}
+.banner-text{
+    padding-top: 100px;
+    margin-left: 50px;
+}
+.banner-text h2{
+    letter-spacing: 10px;
+    font-weight: bold;
+    font-size: 25px;
+}
+.banner-text h1{
+    margin-left: 5px;
+    font-size: 100px;
+}
+.banner-text h6{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.titles{
+    font-weight: 900;
+}
+#btn{
+    width: 150px;
+    height: 45px;
+    font-weight: bold;
+    background-color: black;
+    color: #FFBF00;
+    border: 2px solid #FFBF00;
+    letter-spacing: 3px;
+    margin-left: 50px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+#btn:hover{
+    background-color: #FFBF00 ;
+    color: black;
+}
+/* mShirt.html */
+.box-shadow{
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.img-card{
+    position: relative;
+    height: 250px;
+    width: 250px;
+    border-radius: 25%;
+    background-color: #FFF;
+    padding: 3px;
+}
+.img-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 14px;
+}
+.img-card .crd-img{
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
+    border-radius: 25%;
+}
+/* contact.html */
+.img-box{
+    height: 380px;
+}
+.img-box .img-left{
+    width: 100%;
+    height: 100%;
+}
+/* review clr */
+  .textPrimary:hover {
+    color: #6610f2; /* Adjust the color as needed */
+  }
+/* login.html */
+.gradient-custom-2 {
+    background: #fee79f;
+    background: -webkit-linear-gradient(to right, #fee79f, #e8b92c, #cba639, #fee79f, #FFBF00);
+    background: linear-gradient(to right, #fee79f, #c89b14, #e1b739, #fee79f, #FFBF00);
+    }
+    
+    @media (min-width: 768px) {
+    .gradient-form {
+    height: 100vh !important;
+    }
+    }
+    @media (min-width: 769px) {
+    .gradient-custom-2 {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+    }
+    }

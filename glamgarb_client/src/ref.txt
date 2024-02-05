@@ -1,0 +1,35 @@
+font-weight-bold  <=> fw-bold
+
+<hr className="text-muted w-100"  style={{ background:"#E5E4E2",}}/>
+
+=============================================
+
+npm install bootstrap
+npm uninstall swiper
+npm install jquery popper.js
+npm install @fortawesome/fontawesome-free
+
+=============================================
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
+import 'swiper/swiper-bundle.min.css';
+import Swiper from 'swiper/swiper-bundle.min.js';
+
+import 'jquery';
+import 'popper.js';
+
+=============================================
+
+bootstrap
+muitailwindcss
+
+npm uninstall @emotion/styled 
+npm uninstall @emotion/react 
+npm uninstall tailwindcss
+npm uninstall @mui/icons-material @mui/joy 
+
+npm install --save cdbreact

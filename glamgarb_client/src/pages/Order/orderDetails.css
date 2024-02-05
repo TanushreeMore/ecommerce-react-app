@@ -1,0 +1,38 @@
+  .orderDetailsCard {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0.375rem;
+    padding: 1.25rem;
+    border: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+  
+  .orderDetailsImage {
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
+    object-position: top;
+  }
+  
+  .orderDetailsInfo {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+  }
+  
+  .orderDetailsInfo p {
+    margin: 0;
+  }
+  
+  .orderDetailsRating {
+    color: purple;
+    display: flex;
+    align-items: center;
+  }
+  
+  .orderDetailsRating i {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+  }
