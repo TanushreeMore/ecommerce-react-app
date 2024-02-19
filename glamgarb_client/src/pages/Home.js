@@ -1,6 +1,6 @@
 import React from 'react'
 import Slider from '../common/Slider'
-import MyLogo from '../imgs/black_log.png'
+// import MyLogo from '../imgs/black_log.png'
 import homeData from '../json/homeData'
 
 const Home = () => {
@@ -10,14 +10,14 @@ const Home = () => {
       <div className="container-img">
         <div className="banner" style={{ 
           backgroundImage: "url(https://plus.unsplash.com/premium_photo-1673481599651-5bcb9f683505?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzd8fGNsb3RoaW5nfGVufDB8fDB8fHww)",
-          backgroundSize: '100% 75%',
+          backgroundSize: '100%',
           backgroundRepeat: 'no-repeat'
         }}>
           <div className="banner-text text-center">
             {/* Logo */}
             <span>
               <h1>
-                <strong><img src={MyLogo} style={{}} alt="logo" /></strong>
+                <strong><img src="/imgs/black_log.png" style={{}} alt="logo" /></strong>
               </h1>
             </span>
             {/* Slogan */}

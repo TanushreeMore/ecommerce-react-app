@@ -6,7 +6,7 @@ const findUserCart = async(req, res) => {
         const cart = await cartService.findUserCart(user._id);
         return res.status(200).send(cart);
     } catch (error) {
-        return res.status(500).send({ error: error.message});
+        return res.status(500).send({ message: "error in finding user's cart", error: error.message});
     }
 }
 

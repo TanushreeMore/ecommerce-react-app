@@ -15,6 +15,7 @@ const ProductDetails = () => {
 
   const product = useSelector(store => store.product); 
   console.log("Product Details:", product);
+  console.log("Product-product:", product.product);
   const { loading, error } = useSelector((state) => state.product); // Get product details from the Redux store
 
   const productId = window.location.pathname.split("/").pop(); // Extract product ID from the URL
@@ -26,7 +27,7 @@ const ProductDetails = () => {
       return;
     }
 
-    dispatch(addItemToCart(productId, selectedSize));
+    dispatch(addItemToCart(productId, selectedSize, product.product));
     navigate("/cart");
     };
 
@@ -55,22 +56,22 @@ const ProductDetails = () => {
   // console.log("Product State:", product);
 
   return (
-    <div className="container">
+    <div className="">
       <div className="d-grid product-details-container m-5 p-5 shadow text-center align-content-center ">
         <div className="product-details">
           {loading ? (
             <p>Loading...</p>
           ) : error ? (
             <p>Error: {error}</p>
-          ) : product && product.imageUrl ? (
+          ) : product && product?.product?.imageUrl ? (
             <>
               <div className="row">
                 {/* img */}
                 <div className="col-12 col-md-7">
                   <div className="productImage">
                     <img
-                      src={product.imageUrl}
-                      alt={product.title}
+                      src={product?.product?.imageUrl}
+                      alt={product?.product?.title}
                       className="img-fluid"
                     />
                   </div>
@@ -80,11 +81,11 @@ const ProductDetails = () => {
                 <div className="col-12 col-md-5 justify-content-center mx-auto px-4 mt-5 ">
                   <div className="product-info">
                     <div className="card-title mt-5 ">
-                      <h1 className="mb-4 product_name">{product.title}</h1>
-                      <h6 className="my-2">{product.description}</h6>
+                      <h1 className="mb-4 product_name">{product?.product?.title}</h1>
+                      <h6 className="my-2">{product?.product?.description}</h6>
                       <h6>
                         <b>Price:</b>
-                        {product?.discountedPrice}
+                        {product?.product?.discountedPrice}
                         {/* {product.price != null
                           ? `₹${product.price.toFixed(2)}`
                           : "N/A"} */}
@@ -137,31 +138,7 @@ const ProductDetails = () => {
                         L
                       </button>
                     </div>
-                    {/* <div
-                      className="btn-group "
-                      role="group"
-                      aria-label="Basic example"
-                    >
-                      <b className=" text-uppercase ">Size : </b>
-                      <button
-                        type="button"
-                        className="btn btn-warning fw-bolder fs-6 shadow-lg m-3"
-                      >
-                        S
-                      </button>
-                      <button
-                        type="button"
-                        className="btn btn-warning fw-bolder fs-6 shadow-lg m-3"
-                      >
-                        M
-                      </button>
-                      <button
-                        type="button"
-                        className="btn btn-warning fw-bolder fs-6 shadow-lg m-3"
-                      >
-                        L
-                      </button>
-                    </div> */}
+                    
                     <div className="product-actions my-3 ">
                       {/* Add to Cart Button */}
                       <button

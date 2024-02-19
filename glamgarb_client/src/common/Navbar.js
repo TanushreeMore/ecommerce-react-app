@@ -24,6 +24,11 @@ const Navbar = () => {
                         Home <span className="sr-only">(current)</span>
                       </Link>
                     </li>
+                    <li className="nav-item active">
+                      <Link className="nav-link" to="/admin">
+                        Dashboard <span className="sr-only"></span>
+                      </Link>
+                    </li>
                     <li className="nav-item">
                       <Link className="nav-link" to="/productlist">
                         Products List

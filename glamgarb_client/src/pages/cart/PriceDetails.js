@@ -1,9 +1,11 @@
 // PriceDetails.js
 import React from 'react';
 
-const PriceDetails = ({ index, quantity }) => {
+const PriceDetails = ({ index, quantity, product }) => {
+  console.log("item quantity...", quantity);
+  console.log("item index...", product.price);
   // Assuming each item has a 'price' property
-  const itemPrice = 0; // replace with actual property name for price
+  const itemPrice = product.price; // replace with actual property name for price
 
   const calculateTotalPrice = () => {
     return itemPrice * quantity;

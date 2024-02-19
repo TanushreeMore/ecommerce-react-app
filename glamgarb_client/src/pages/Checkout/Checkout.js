@@ -3,6 +3,7 @@ import Login from "../../profile/Login";
 import DeliveryAddressForm from "./DeliveryAddressForm";
 import OrderSummary from "./OrderSummary";
 import "./Stepper.css"; // Import your custom styles
+import Register from "../../profile/Register";
 
 const Checkout = () => {
     // Retrieve the active step from local storage on component mount
@@ -64,10 +65,22 @@ const Checkout = () => {
 };
 
 const Step1 = ({ handleNextPrevClick }) => {
+  const [showLoginForm, setShowLoginForm] = useState(true);
+
+  const toggleForm = () => {
+    setShowLoginForm(!showLoginForm);
+  };
+
   return (
     <div className="step-container">
-      <h1 className="text-center mb-4">Login</h1>
-      <Login />
+      <h1 className="text-center mb-4">
+        {showLoginForm ? "Login" : "Register"}
+      </h1>
+      {showLoginForm ? (
+        <Login toggleForm={toggleForm} />
+      ) : (
+        <Register toggleForm={toggleForm} />
+      )}
       <div className="mt-3 text-center my-4">
         <button
           className="btn btn-dark text-uppercase"

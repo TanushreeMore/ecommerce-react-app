@@ -1,16 +1,16 @@
 const app = require(".");
 const {connectDb} = require("./config/db");
 
-const PORT = 5454;
+const seed = require('./seed');// Import seeding script
 
-// app.listen(PORT, async() => {
-//     await connectDb();
-//     console.log("PORT", PORT);
-// })
+const PORT = 5454;
 
 const startServer = async () => {
     try {
         await connectDb();
+        
+        await seed();// Seed the database and wait for it to finish
+
         app.listen(PORT, () => {
             console.log("Server is running on PORT", PORT);
         });

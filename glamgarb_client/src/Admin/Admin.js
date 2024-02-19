@@ -30,7 +30,7 @@ import AdminDashboard from "./components/AdminDashboard";
 const menu = [
   { name: "Dashboard", path: "/admin", icon: <DashboardIcon /> },
   { name: "Products", path: "/admin/products", icon: <EventNoteIcon /> },
-  { name: "Customers", path: "/admin/customers", icon: <SwitchAccountIcon /> },
+  // { name: "Customers", path: "/admin/customers", icon: <SwitchAccountIcon /> },
   { name: "Orders", path: "/admin/orders", icon: <BorderColorIcon /> },
   { name: "AddProduct", path: "/admin/product/create", icon: <PostAddIcon /> },
   // {name: "Dashboard", path: "/admin"},

@@ -7,35 +7,6 @@ import Rating from "./ProductDetails/Ratings";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { findProducts } from "../../State/Product/productAction";
-
-// Define the initial state
-// const initialState = {
-//   products: [],
-//   loading: true,
-//   error: null,
-// };
-
-// Define the reducer function
-// const productReducer = (state, action) => {
-//   switch (action.type) {
-//     case "FETCH_PRODUCTS_SUCCESS":
-//       return {
-//         ...state,
-//         products: action.payload,
-//         loading: false,
-//         error: null,
-//       };
-//     case "FETCH_PRODUCTS_FAILURE":
-//       return {
-//         ...state,
-//         loading: false,
-//         error: action.payload,
-//       };
-//     default:
-//       return state;
-//   }
-// };
-
 const ProductList = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const { products, loading, error } = useSelector((state) => state.product); // Use useSelector to get products from the Redux store

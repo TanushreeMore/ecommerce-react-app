@@ -1,6 +1,5 @@
 import {
     Avatar,
-    Button,
     Card,
     CardHeader,
     Paper,
@@ -13,7 +12,7 @@ import {
   } from "@mui/material";
   import React, { useEffect } from "react";
   import { useDispatch, useSelector } from "react-redux";
-  import { deleteProduct, findProducts } from "../../State/Product/productAction";
+  import { findProducts } from "../../State/Product/productAction";
 
 const ProductsTableView = () => {
     const dispatch = useDispatch();

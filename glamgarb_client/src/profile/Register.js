@@ -39,37 +39,48 @@ const Register = ({closeModal, toggleForm}) => {
       password,
     };
     
-      // Dispatch the registration action
-      dispatch(register(userData));
-      console.log("dispatch", userData);
+    //   // Dispatch the registration action
+    //   dispatch(register(userData));
+    //   console.log("dispatch", userData);
 
-        // Store user data in localStorage
-        localStorage.setItem("userData - localstorage", JSON.stringify(userData));
+    //     // Store user data in localStorage
+    //     localStorage.setItem("userData - localstorage", JSON.stringify(userData));
         
-        navigate("/login");
+    //     navigate("/login");
         
-        // Clear form fields and validation message
+    //     // Clear form fields and validation message
+    //   setFirstName("");
+    //   setLastName("");
+    //   setEmail("");
+    //   setPassword("");
+    //   setValidationMessage("");
+
+    // closeModal(); 
+  
+
+    try {
+      // Dispatch the registration action
+      await dispatch(register(userData));
+  
+      // Store user data in localStorage
+      localStorage.setItem("userData - localstorage", JSON.stringify(userData));
+  
+      // Clear form fields and validation message
       setFirstName("");
       setLastName("");
       setEmail("");
       setPassword("");
       setValidationMessage("");
-
-    // axios
-    //   .post("http://localhost:3002/api/user/register", {
-    //     firstName,
-    //     lastName,
-    //     email,
-    //     password,
-    //   })
-    //   .then((result) => {
-    //     console.log(result);
-    //     navigate("/login");
-    //   })
-    //   .catch((err) => console.log(err));
- 
-    closeModal(); 
   
+      // Close modal
+      closeModal();
+  
+      // Navigate to login page
+      navigate("/login");
+    } catch (error) {
+      console.error("Registration error:", error);
+      // Handle error (show message, etc.)
+    }
   };
 
   return (
@@ -91,7 +102,7 @@ const Register = ({closeModal, toggleForm}) => {
 
                   {/* Form for user registration */}
                   <form
-                    id="form"
+                    id={`form-${Math.random().toString(36).substr(2, 9)}`} // Unique ID
                     onSubmit={handleSubmit}
                   >
                     {/* First Name */}
@@ -127,7 +138,7 @@ const Register = ({closeModal, toggleForm}) => {
                       </label>
                       <input
                         type="email"
-                        id="email"
+                        id={`email-${Math.random().toString(36).substr(2, 9)}`} 
                         className="form-control"
                         onChange={(e) => setEmail(e.target.value)}
                         required
@@ -140,7 +151,7 @@ const Register = ({closeModal, toggleForm}) => {
                       </label>
                       <input
                         type="password"
-                        id="password"
+                        id={`password-${Math.random().toString(36).substr(2, 9)}`} // Unique ID
                         className="form-control"
                         onChange={(e) => setPassword(e.target.value)}
                         required

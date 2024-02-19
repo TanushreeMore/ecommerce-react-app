@@ -16,6 +16,7 @@ import Contact from '../pages/Contact';
 import Order from '../pages/Order/Order';
 import OrderDetails from '../pages/Order/OrderDetails';
 import PaymentSuccess from '../pages/Payment/PaymentSuccess';
+import UserProfile from '../profile/UserProfile';
 
 const CustomerRouters = () => {
   return (
@@ -33,6 +34,7 @@ const CustomerRouters = () => {
         {/* login */}
         <Route exact path="/login" element={<Home />} /> {/* {<Login /> */}
         <Route exact path="/register" element={<Home />} />
+        <Route exact path="/profile" element={<UserProfile />} />
         {/* cart */}
         <Route exact path="/cart" element={<Cart />} />
         {/* products */}

@@ -3,16 +3,17 @@ import React, { useState, useEffect } from "react";
 import CartItem from "./CartItem";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCart } from "../../State/Cart/cartAction";
+import { getCart, removeCartItem, updateCartItem } from "../../State/Cart/cartAction";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   // const [discountCode, setDiscountCode] = useState("");
-  const [appliedDiscount, setAppliedDiscount] = useState(0);
+  // const [appliedDiscount, setAppliedDiscount] = useState(0);
 
   const navigate = useNavigate();
   const cart = useSelector(store=>store.cart)
+  console.log("cart in cartitem", cart);
   const dispatch = useDispatch();
 
   const handleCheckout = () => {
@@ -21,7 +22,24 @@ const Cart = () => {
 
   useEffect(() => {
     dispatch(getCart())
-  }, [cart.updateCartItem, cart.deleteCartItem])
+  }, [dispatch, cart.updateCartItem, cart.deleteCartItem])
+
+  // Function to remove an item from the cart
+  const removeFromCart = (cartItemId) => {
+    dispatch(removeCartItem(cartItemId)).then(() => {
+      dispatch(getCart()); // Fetch updated cart data after removing the item
+    });
+  };
+
+  const updateItem = async (productId, size, quantity) => {
+    // Dispatch updateCartItem action here
+    dispatch(updateCartItem(productId, size, quantity));
+  };
+
+  // Calculate total price based on the updated cart data
+  const totalPrice = cart.cart?.totalPrice;
+  const totalDiscount = cart.cart.discount;
+  const totalAmount = totalPrice - totalDiscount;
   
 
   // useEffect(() => {
@@ -46,22 +64,22 @@ const Cart = () => {
   // };
 
   // Function to calculate the total amount of the cart
-  const calculateTotalAmount = () => {
-    // Assuming each item has a 'price' property
-    const totalAmount = cartItems.reduce((acc, item) => acc + item.price, 0);
-    // Subtract the applied discount
-    const discountAmount = totalAmount * appliedDiscount;
-    // Display total amount without discount
-    const totalWithShipping = totalAmount - discountAmount + 100; // add shipping charges
+  // const calculateTotalAmount = () => {
+  //   // Assuming each item has a 'price' property
+  //   const totalAmount = cartItems.reduce((acc, item) => acc + item.price, 0);
+  //   // Subtract the applied discount
+  //   const discountAmount = totalAmount * appliedDiscount;
+  //   // Display total amount without discount
+  //   const totalWithShipping = totalAmount - discountAmount + 100; // add shipping charges
 
-    return totalWithShipping.toFixed(2);
-  };
+  //   return totalWithShipping.toFixed(2);
+  // };
   // Function to remove an item from the cart
-  const removeFromCart = (index) => {
-    const updatedCartItems = [...cartItems];
-    updatedCartItems.splice(index, 1);
-    setCartItems(updatedCartItems);
-  };
+  // const removeFromCart = (index) => {
+  //   const updatedCartItems = [...cartItems];
+  //   updatedCartItems.splice(index, 1);
+  //   setCartItems(updatedCartItems);
+  // };
   // Function to move an item to the wishlist
   const moveToWishlist = (index) => {
     const movedItem = cartItems[index];
@@ -90,13 +108,14 @@ const Cart = () => {
                       {/* ({cartItems.length} items) */}
                     </h2>
 
-                    {cart.cart?.cartItems.map((item, index) => (
+                    {cart?.cart?.cartItems?.map((item, index) => (
                       <CartItem
                         key={index}
                         item={item}
                         index={index}
-                        removeFromCart={() => removeFromCart(index)}
+                        removeFromCart={() => removeFromCart(item._id)}
                         moveToWishlist={() => moveToWishlist(index)}
+                        updateItem={() => updateItem(item.productId, item.size)}
                       />
                     ))}
 
@@ -118,8 +137,8 @@ const Cart = () => {
                       <p>
                         ₹
                         <span id="product_total_amt">
+                        {/* {totalPrice} */}
                         {cart.cart?.totalPrice}
-                          {/* {calculateTotalAmount()} */}
                         </span>
                       </p>
                     </div>
@@ -142,7 +161,8 @@ const Cart = () => {
                       <p>
                         ₹
                         <span id="total_cart_amt">
-                          {calculateTotalAmount()}
+                        {/* {cart.cart?.totalDiscountedPrice} */}
+                          {totalAmount}
                         </span>
                       </p>
                     </div>

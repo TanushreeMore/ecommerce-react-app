@@ -7,6 +7,10 @@ async function updateCartItem(userId, cartItemId, cartItemData)
   //console.log(userId, cartItemId, cartItemData)
   try {
     const item = await findCartItemById(cartItemId);
+
+    if(!item){
+      throw new Error("cart item not found", cartItemId);
+    }
     const user = await userService.findUserById(item.userId);
 
     if (!user) {
@@ -45,7 +49,9 @@ async function removeCartItem(userId, cartItemId) {
 }
 
 async function findCartItemById(cartItemId) {
+  console.log("getCartItemById",cartItemId);
   const cartItem = await CartItem.findById(cartItemId).populate("product");
+  console.log("cart-findbyid", cartItem);
 
   if (cartItem) {
     return cartItem;

@@ -13,6 +13,9 @@ const OrderSummary = () => {
   const orderId = searchParams.get("order._id") //("order.id")
   const order = useSelector((store) => store.order);
 
+  console.log("OrderSummary:", order);
+  // console.log("OrderSummary address:", order.order.shippingAddress);
+
   const [cartItems, setCartItems] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const [discountCode, setDiscountCode] = useState("");
@@ -27,14 +30,6 @@ const OrderSummary = () => {
   const handleCheckout=()=>{
     dispatch(createPayment(orderId))
   }
-  
-  // useEffect(() => {
-  //   // Fetch products from the backend
-  //   fetch("http://localhost:3002/api/products")
-  //     .then((response) => response.json())
-  //     .then((data) => setCartItems(data))
-  //     .catch((error) => console.error("Error fetching products:", error));
-  // }, []);
 
   // Function to handle discount code application
   const applyDiscountCode = () => {
@@ -89,16 +84,18 @@ const OrderSummary = () => {
         <div className="bg-light">
           <div className="row">
             {/* <div className="col-md-10 col-11 mx-auto"> */}
-              <div className="row mt-1 gx-3">
+              {/* <div className="row mt-1 gx-3"> */}
                 {/* left side div */}
-                <div className="col-md-12 col-lg-8 col-11 mx-auto main_cart mb-lg-0 mb-5 shadow">
+                <div className="col-md-12 col-lg-8 mx-auto main_cart mb-lg-0 mb-5 shadow">
                   {/* dynamically fetch data into cart */}
                   <div className="card p-0 my-3 ">
-                    <CartItem /> {/* <h2 className="py-4 font-weight-bold">
+                    {/* <CartItem />  */}
+                    
+                    {/* <h2 className="py-4 font-weight-bold">
                       Cart ({cartItems.length} items) 
                     </h2>*/}                    
-{/* 
-                    {order.order?.orderItems.map((item, index) => (
+
+                    {order?.order?.orderItems?.map((item, index) => (
                       <CartItem
                         key={index}
                         item={item}
@@ -106,12 +103,12 @@ const OrderSummary = () => {
                         removeFromCart={() => removeFromCart(index)}
                         moveToWishlist={() => moveToWishlist(index)}
                       />
-                    ))} */}
+                    ))}
                   </div>
                 </div>
 
                 {/* right side div */}
-                <div className="col-md-12 col-lg-4 col-11 mx-auto mt-lg-0 mt-md-5">
+                <div className="col-md-12 col-lg-4 mx-auto mt-lg-0 mt-md-5">
                   <div className="right_side p-3 shadow bg-white">
                     <h2 className="product_name my-1 font-weight-bold text-muted">Price Details</h2>
                     <hr className="text-muted w-100"  style={{ background:"#E5E4E2",}}/>
@@ -120,7 +117,6 @@ const OrderSummary = () => {
                       <p>
                       ₹<span id="product_total_amt">
                       {order.order?.totalPrice}
-                        {calculateTotalAmount()}
                         </span>
                       </p>
                     </div>
@@ -143,7 +139,6 @@ const OrderSummary = () => {
                       <p>
                       ₹<span id="total_cart_amt">
                         {order.order?.totalDiscountedPrice}
-                        {calculateTotalAmount()}
                       </span>
                       </p>
                     </div>
@@ -165,7 +160,7 @@ const OrderSummary = () => {
                     <div className="mt-3">
                     <button className="btn btn-dark text-uppercase text-white" onClick={handleCheckout}>
                       {/* <Link to="/checkout" className=" "> */}
-                      Checkout
+                      Payment
                       {/* </Link> */}
                     </button>
                     </div>
@@ -225,7 +220,7 @@ const OrderSummary = () => {
             {/* </div> */}
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 };

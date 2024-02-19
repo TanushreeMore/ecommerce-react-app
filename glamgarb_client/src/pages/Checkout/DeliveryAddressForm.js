@@ -1,21 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AddressCard from "../AddressCard/AddressCard";
 import { useDispatch, useSelector } from "react-redux";
 import { createOrder } from "../../State/Order/orderAction";
 import { useNavigate } from "react-router-dom";
+import { getUser } from "../../State/Auth/authAction";
 
 const DeliveryAddressForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const auth = useSelector(store=>store.auth)
+  const [addressList, setAddressList] = useState([]);
+  
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+  useEffect(() => {
+    // Fetch user data when the component mounts
+    dispatch(getUser(localStorage.getItem("jwt")));
+  }, [dispatch]);
+
+  // Check if user is authenticated and user data is available
+  if (!auth.isAuthenticated || !auth.user) {
+    return <div className="text-center h4 m-5 p-5">LOG IN TO YOUR ACCOUNT</div>;
+  }
 
   console.log("auth.user:", auth.user);
-  console.log("auth.user.addresses:", auth.user?.addresses);
+  console.log("auth.user.addresses:", auth.user?.address);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const addressData = new FormData(e.currentTarget);
-    const address = {
+    const newAddress = {
       firstName: addressData.get("firstName"),
       lastName: addressData.get("lastName"),
       streetAddress: addressData.get("inputAddress"),
@@ -25,24 +40,31 @@ const DeliveryAddressForm = () => {
       mobile: addressData.get("inputMobile"),
     };
 
-    const orderData = { address: address, navigate: navigate }
+    // Update address list state
+    setAddressList([...addressList, newAddress]);
+
+    const orderData = { address: newAddress, navigate: navigate }
     dispatch(createOrder(orderData))
     console.log("Address orderData ", orderData);
-    console.log("Address : ", address);
+    console.log("Address : ", newAddress);
   };
 
   return (
-    <div className="container">
+    <div className="m-5">
       <div className="row">
         {/* left side */}
         <div className="col-md-5 col-12 border-5 shadow card rounded-3 mb-4 ">
           <div className="p-5 py-7 border-5 text-left ">
             <h3 className="text-center text-uppercase ">Details :</h3>
             <br />
-            <AddressCard />
+            {/* Render user addresses if available */}
+            {addressList.map((address, index) => (
+              <AddressCard key={index} address={address} />
+            ))}
+            {/* <AddressCard />
             {auth.user?.map((item) => (
               <AddressCard key={item} address={item} />
-            ))}
+            ))} */}
           </div>
         </div>
         {/* right side */}
@@ -56,6 +78,8 @@ const DeliveryAddressForm = () => {
                   id="firstName"
                   name="firstName"
                   placeholder="First Name"
+                  value={auth.user.firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                   required
                 />
               </div>
@@ -66,6 +90,8 @@ const DeliveryAddressForm = () => {
                   id="lastName"
                   name="lastName"
                   placeholder="Last Name"
+                  value={auth.user.lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                   required
                 />
               </div>

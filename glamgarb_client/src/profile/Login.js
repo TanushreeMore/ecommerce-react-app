@@ -14,6 +14,8 @@ const Login = ({ closeModal, toggleForm }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Assuming login is successful here
+    closeModal(); // Close the modal when login is successful
 
     const userData = {
       email,
@@ -27,7 +29,7 @@ const Login = ({ closeModal, toggleForm }) => {
         clearForm();
         setTimeout(() => {
           setMessage("");
-          navigate("/");
+          // navigate("/");
         }, 1000);
       })
       .catch((error) => {
@@ -38,33 +40,6 @@ const Login = ({ closeModal, toggleForm }) => {
           clearForm();
         }, 1000);
       });
-
-    // axios
-    //   .post("http://localhost:3002/api/user/login", {
-    //     email,
-    //     password,
-    //   })
-    //   .then((result) => {
-    //     console.log(result);
-    //     if (result.data === "Success") {
-    //       navigate("/");
-    //     } else {
-    //       console.log("All fields are required");
-    //       setValidationMessage("All fields are required"); // Set validation message
-
-    //       // Clear all fields when validation message appears
-    //       setEmail("");
-    //       setPassword("");
-
-    //       return;
-    //     }
-
-    //     // Clear validation message if all fields are filled
-    //     setValidationMessage("");
-    //     setEmail("");
-    //     setPassword("");
-    //   })
-    //   .catch((err) => console.log(err));
   };
   const clearForm = () => {
     setEmail("");
@@ -94,12 +69,13 @@ const Login = ({ closeModal, toggleForm }) => {
           )}
 
           {/* Form for user login */}
-          <form id="form" onSubmit={handleSubmit}>
+          <form id={`form-${Math.random().toString(36).substr(2, 9)}`} // Unique ID
+  onSubmit={handleSubmit}>
             <p>Please login to your account</p>
             <div className="form-outline mb-4">
               <input
                 type="email"
-                id="email"
+                id={`email-${Math.random().toString(36).substr(2, 9)}`} 
                 className="form-control"
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -112,7 +88,7 @@ const Login = ({ closeModal, toggleForm }) => {
             <div className="form-outline mb-4">
               <input
                 type="password"
-                id="password"
+                id={`password-${Math.random().toString(36).substr(2, 9)}`} // Unique ID
                 className="form-control"
                 onChange={(e) => setPassword(e.target.value)}
                 required
