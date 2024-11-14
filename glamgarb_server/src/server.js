@@ -3,7 +3,7 @@ const {connectDb} = require("./config/db");
 
 // const seed = require('./seed');// Import seeding script
 
-const PORT = 5454;
+const PORT = process.env.PORT || 5454;
 
 const startServer = async () => {
     try {
